@@ -12,7 +12,6 @@ use App\Http\Controllers\Materials\MaterialController;
 use App\Http\Controllers\Specialties\SpecialtieController;
 
 
-Route::get('/', [UserController::class, 'index']);
 Route::get('/login', [UserController::class, 'index']);
 
 Route::group(['prefix' => 'dashboard'], function(){
@@ -32,8 +31,7 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::post('/store', [SpecialtieController::class, 'store'])->name('specialties.add');
         Route::post('/update', [SpecialtieController::class, 'update'])->name('specializations.update');
         Route::post('/delete', [SpecialtieController::class, 'destroy'])->name('specializations.delete');
-
-        
+   
     });
 
 
@@ -51,6 +49,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::get('/', [StudentController::class, 'index']);
         Route::get('/create', [StudentController::class, 'create']);
         Route::post('/store', [StudentController::class, 'store'])->name('students.add');
+        Route::post('/update', [StudentController::class, 'update'])->name('students.update');
+        Route::post('/delete', [StudentController::class, 'destroy'])->name('students.delete');
         
     });
 
@@ -59,6 +59,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::get('/', [TeacherController::class, 'index']);
         Route::get('/create', [TeacherController::class, 'create']);
         Route::post('/store', [TeacherController::class, 'store'])->name('teachers.add');
+        Route::post('/update', [TeacherController::class, 'update'])->name('teachers.update');
+        Route::post('/delete', [TeacherController::class, 'destroy'])->name('teachers.delete');
     });
 
     Route::group(['prefix' => 'parents'], function(){
@@ -66,6 +68,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::get('/', [ParentController::class, 'index']);
         Route::get('/create', [ParentController::class, 'create']);
         Route::post('/store', [ParentController::class, 'store'])->name('parents.add');
+        Route::post('/update', [ParentController::class, 'update'])->name('parents.update');
+        Route::post('/delete', [ParentController::class, 'destroy'])->name('parents.delete');
     });
 
     Route::group(['prefix' => 'absences'], function(){

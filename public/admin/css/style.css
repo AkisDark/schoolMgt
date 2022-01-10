@@ -1,3 +1,7 @@
 .color-i{
 	color:#636e72;
 }
+
+#table_filter{
+	float:left
+}

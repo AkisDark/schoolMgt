@@ -17,14 +17,7 @@
                             <h4 class="card-title" id="basic-layout-form"> اضافة  تلميذ(ة) جديد  </h4>
                             <a class="heading-elements-toggle"><i
                                     class="la la-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                </ul>
-                            </div>
+                            
                         </div>
                         @include('includes.alerts.success')
                         @include('includes.alerts.errors')
@@ -39,8 +32,9 @@
                                             <div class="form-group">
                                                 <label for="projectinput1">  اللقب  </label>
                                                 <input type="text" value="{{ old('firstName') }}" required
-                                                       class="form-control"
-                                                       name="firstName">
+                                                        class="form-control"
+                                                        id="firstName"
+                                                        name="firstName">
                                             @error('firstName')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
@@ -52,8 +46,9 @@
                                             <div class="form-group">
                                                 <label for="projectinput1">  الاسم  </label>
                                                 <input type="text" value="{{ old('lastName') }}" required
-                                                       class="form-control"
-                                                       name="lastName">
+                                                        id="lastName"
+                                                        class="form-control"
+                                                        name="lastName">
                                             @error('lastName')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
@@ -63,15 +58,16 @@
                                         </div>
                                     </div>
                                     
-
+                
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="projectinput1">  تاريخ الميلاد  </label>
-                                                <input type="date" value="{{ old('firstName') }}" required
-                                                       class="form-control"
-                                                       name="firstName">
-                                            @error('firstName')
+                                                <input type="date" value="{{ old('dateOfBirth') }}" required
+                                                        class="form-control"
+                                                        id="dateOfBirth"
+                                                        name="dateOfBirth">
+                                            @error('dateOfBirth')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                 
@@ -80,134 +76,139 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> مكان الميلاد </label>
-                                               
+                                                <label for=""> مكان الميلاد </label>
+                                                
                                                 <select 
                                                         class="form-control"
-                                                        name="wilaya">
+                                                        id="wilayaId"
+                                                        name="wilayaId">
                                                     <option value="" selected disabled></option>
                                                     @foreach ($wilayas as $wilaya)
                                                         <option value="{{ $wilaya->id }}">
                                                             {{ $wilaya->name  }}
                                                         </option> 
                                                     @endforeach
-
+                
                                                 </select>
                 
-                                                @error('wilaya')
+                                                @error('wilayaId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-
-
+                
+                
                                     <div class="row">
                                         
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2">اسم الولي </label>
-                                               
+                                                <label for="">اسم الولي </label>
+                                                
                                                 <select 
                                                         class="form-control"
-                                                        name="parent">
+                                                        id="parentId"
+                                                        name="parentId">
                                                     <option value="" selected disabled></option>
                                                     @foreach ($parents as $parent)
                                                         <option value="{{ $parent->id }}">
                                                             {{ $parent->first_name  }} {{ $parent->last_name  }} ( {{ $parent->identity_card }} )
                                                         </option> 
                                                     @endforeach
-
+                
                                                 </select>
                 
-                                                @error('parent')
+                                                @error('parentId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
-
+                
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> المستوى الدراسي </label>
-                                               
-                                                <select 
+                                                <label for=""> المستوى الدراسي </label>
+                                                
+                                                <select required
                                                         class="form-control"
-                                                        name="level">
+                                                        id="levelId"
+                                                        name="levelId">
                                                     <option value="" selected disabled></option>
                                                     @foreach ($levels as $level)
                                                         <option value="{{ $level->id }}">
                                                             {{ $level->name  }}
                                                         </option> 
                                                     @endforeach
-
+                
                                                 </select>
                 
-                                                @error('level')
+                                                @error('levelId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-
+                
                                     <div class="row">
                                         
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2">القسم </label>
-                                               
+                                                <label for="">القسم </label>
+                                                
                                                 <select 
                                                         class="form-control"
-                                                        name="room">
+                                                        id="roomId"
+                                                        name="roomId">
                                                     <option value="" selected disabled></option>
                                                     @foreach ($rooms as $room)
                                                         <option value="{{ $room->id }}">
                                                             {{ $room->name  }}
                                                         </option> 
                                                     @endforeach
-
+                
                                                 </select>
                 
-                                                @error('room')
+                                                @error('roomId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
-
+                
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> التخصص</label>
-                                               
+                                                <label for=""> التخصص</label>
+                                                
                                                 <select 
                                                         class="form-control"
-                                                        name="levspecializationel">
+                                                        id="specializationId"
+                                                        name="specializationId">
                                                     <option value="" selected disabled></option>
                                                     @foreach ($specializations as $specialization)
                                                         <option value="{{ $specialization->id }}">
                                                             {{ $specialization->name  }}
                                                         </option> 
                                                     @endforeach
-
+                
                                                 </select>
                 
-                                                @error('specialization')
+                                                @error('specializationId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-
+                
+                                    
                                     <div class="row">
                                         <div class="col-11">
                                             <h4 class="mb-1">الجنس</h4>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input checked type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="ذكر">
-                                                <label class="custom-control-label" for="customRadioInline1">ذكر</label>
-                                              </div>
-                                              <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="أنثى">
-                                                <label class="custom-control-label" for="customRadioInline2">أنثى</label>
-                                              </div>
-                                            
+                                                <input id="male" type="radio"  name="gender" class="custom-control-input" value="ذكر">
+                                                <label class="custom-control-label" for="male">ذكر</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="female" type="radio"  name="gender" class="custom-control-input" value="أنثى">
+                                                <label  class="custom-control-label" for="female">أنثى</label>
+                                            </div>
                                         </div>
                                         
                                     </div>

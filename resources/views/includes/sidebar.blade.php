@@ -1,5 +1,5 @@
 <!-- Begin SideBar-->
-<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item">

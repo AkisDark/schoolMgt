@@ -16,14 +16,7 @@
                                 <h4 class="card-title">جميع الأعضاء</h4>
                                 <a class="heading-elements-toggle"><i
                                         class="la la-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul>
-                                </div>
+                               
                             </div>
 
                             @include('includes.alerts.success')
@@ -56,13 +49,13 @@
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
                                                             <a data-toggle="modal" data-target="#updateData"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1"
+                                                                class="btn btn-outline-primary  box-shadow-3 mr-1 mb-1"
                                                                 onclick="getDataUpdate('{{ $user->id }}', '{{ $user->first_name }}', '{{ $user->last_name }}',
                                                                                         '{{ $user->email }}','{{ $user->username }}','{{ $user->phone }}',)">تعديل</a>
 
 
                                                             <a  onclick="getIdForDel('{{ $user->id }}')" data-toggle="modal" data-target="#popupDel"
-                                                                class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                                class="btn btn-outline-danger  box-shadow-3 mr-1 mb-1">حذف</a>
 
                                                         </div>
                                                     </td>

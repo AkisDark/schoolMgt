@@ -20,6 +20,36 @@ class ParentController extends Controller
         return view('admin.parents.create');
     }
 
+    public function store(Request $request){
+        if($request){
+            _Parent::create([
+                'first_name' => $request->firstName,
+                'last_name' => $request->lastName,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'identity_card' => $request->identityCard,
+            ]);
+            return redirect()->back()->with(['success'=> __('messages.msg_add')]);
+        }
+        return redirect()->back()->withInput()->withErrors($request)->with(['error'=> __('messages.msg_error')]);
+    }
+
+    public function update(Request $request){
+        if($request){
+            if(_Parent::where('id', $request->id)->exists()){
+                _Parent::where('id', $request->id)->update([
+                    'first_name' => $request->firstName,
+                    'last_name' => $request->lastName,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'identity_card' => $request->identityCard,
+                ]);
+                return redirect()->back()->with(['success'=> __('messages.msg_upt')]);
+            }
+        }
+        return redirect()->back()->withInput()->withErrors($request)->with(['error'=> __('messages.msg_error')]);
+    }
+
     public function destroy(Request $request){
         if(_Parent::where('id', $request->idDel)->exists()){
             $parent = _Parent::where('id', $request->idDel);
