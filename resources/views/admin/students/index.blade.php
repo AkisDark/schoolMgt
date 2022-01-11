@@ -23,7 +23,7 @@
                             @include('includes.alerts.errors')
 
                             <div class="card-content collapse show">
-                                <div class="card-body card-dashboard" >
+                                <div class="card-body card-dashboard" style="overflow:auto;width:98%;height:600px;margin:auto">
                                     <table id="table" class="table nowrap table-striped table-bordered scroll-horizontal">
                                         <thead class="">
                                         <tr>
@@ -34,7 +34,6 @@
                                             <th>اسم الولي</th>
                                             <th>المستوى</th>
                                             <th>القسم</th>
-                                            <th>التخصص</th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -46,19 +45,16 @@
                                                     <td>{{$student->first_name}} {{$student->last_name}}</td>
                                                     <td>{{$student->date_of_birth}}</td>
                                                     <td>{{$student->wilaya->name}}</td>
-                                                    <td>{{$student->gender}}</td>
                                                     <td>{{$student->parent->first_name}} {{$student->parent->last_name}}</td>
                                                     <td>{{$student->level->name}}</td>
                                                     <td>{{$student->room->name}}</td>
                                                     <td>{{$student->specialization->name}}</td>
                                                     <td>
 
-                                                        
-
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
 
-                                                            <a onclick=""
+                                                            <a target="_blanck" href="{{ url('dashboard/certificates/school-certificate/' . $student->id) }}"
                                                                 class="btn btn-outline-success box-shadow-3 mr-1 mb-1">ش.مدرسية</a>
                                                             <a onclick="getDataUpdate('{{$student->id}}', '{{$student->first_name}}', 
                                                                                         '{{$student->last_name}}', '{{$student->date_of_birth}}', 
@@ -95,10 +91,10 @@
     </div>
 
       <!-- Modal (update) -->
-      <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document" >
             <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" >
                 <h5 class="modal-title" id="exampleModalLongTitle"> تعديل البيانات </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

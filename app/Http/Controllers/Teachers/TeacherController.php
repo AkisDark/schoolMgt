@@ -14,8 +14,10 @@ class TeacherController extends Controller
     //
     public function index(){
         
-        $teachers = Teacher::with(['material'])->get();
-        return view('admin.teachers.index', compact('teachers'));
+        $teachers = Teacher::with(['wilaya', 'material'])->get();
+        $wilayas = Wilaya::get(); 
+        $materials = Material::get();
+        return view('admin.teachers.index', compact('teachers', 'wilayas', 'materials'));
     }
 
     public function create(){

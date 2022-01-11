@@ -10,6 +10,7 @@ use App\Http\Controllers\Students\StudentController;
 use App\Http\Controllers\Teachers\TeacherController;
 use App\Http\Controllers\Materials\MaterialController;
 use App\Http\Controllers\Specialties\SpecialtieController;
+use App\Http\Controllers\Certificate\CertificateController;
 
 
 Route::get('/login', [UserController::class, 'index']);
@@ -100,6 +101,16 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::post('/members-update', [UserController::class, 'updateDataMembers'])->name('members.update');
         Route::post('/delete', [UserController::class, 'destroy'])->name('members.delete');
         Route::get('/logout', [UserController::class, 'logout']);
+    });
+
+     // Certificates
+     Route::group(['prefix' => 'certificates'], function(){
+        Route::get('/school-certificate/{studentId}', [CertificateController::class, 'getSchoolCertificatePdf']);
+        Route::get('/work-certificate/{teacherId}', [CertificateController::class, 'getWorkCertificatePdf']);
+        Route::get('/first-absence-notice/{studentId}', [CertificateController::class, 'getFirstAbsenceNoticePdf']);
+        Route::get('/second-absence-notice/{studentId}', [CertificateController::class, 'getSecondAbsenceNoticePdf']);
+        Route::get('/list-students/{classId}', [CertificateController::class, 'getListStudentsByRoom']);
+
     });
 
 });
