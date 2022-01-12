@@ -9,6 +9,7 @@ use App\Http\Controllers\Absences\AbsenceController;
 use App\Http\Controllers\Students\StudentController;
 use App\Http\Controllers\Teachers\TeacherController;
 use App\Http\Controllers\Materials\MaterialController;
+use App\Http\Controllers\statistics\StatisticsController;
 use App\Http\Controllers\Specialties\SpecialtieController;
 use App\Http\Controllers\Certificate\CertificateController;
 
@@ -107,9 +108,14 @@ Route::group(['prefix' => 'dashboard'], function(){
      Route::group(['prefix' => 'certificates'], function(){
         Route::get('/school-certificate/{studentId}', [CertificateController::class, 'getSchoolCertificatePdf']);
         Route::get('/work-certificate/{teacherId}', [CertificateController::class, 'getWorkCertificatePdf']);
-        Route::get('/first-absence-notice/{studentId}', [CertificateController::class, 'getFirstAbsenceNoticePdf']);
-        Route::get('/second-absence-notice/{studentId}', [CertificateController::class, 'getSecondAbsenceNoticePdf']);
+        Route::post('/absence-notice', [CertificateController::class, 'getAbsenceNoticePdf']);
         Route::get('/list-students/{classId}', [CertificateController::class, 'getListStudentsByRoom']);
+
+    });
+
+    Route::group(['prefix' => 'statistics'], function(){
+        Route::get('/', [StatisticsController::class, 'index']);
+        Route::get('/classes', [StatisticsController::class, 'classesStatistics']);
 
     });
 

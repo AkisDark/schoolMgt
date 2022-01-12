@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-11">
                                 <div class="form-group">
-                                    <label for="projectinput1"> اسم التخصص </label>
+                                    <label for="projectinput1"> اسم التخصص <span class="text-danger"> (*) </span></label>
                                     <input type="text" value="{{ old('specialization') }}" 
                                         id="specialization"
                                         class="form-control"

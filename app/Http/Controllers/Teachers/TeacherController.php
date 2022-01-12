@@ -44,7 +44,7 @@ class TeacherController extends Controller
     }
 
     public function update(TeacherRequest $request){
-        if(Teacher::where('id', $reuqest->id)->exists()){
+        if(Teacher::where('id', $request->id)->exists()){
             Teacher::where('id', $request->id)->update([
                 'first_name' => $request->firstName,
                 'last_name' => $request->lastName,

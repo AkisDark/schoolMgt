@@ -30,10 +30,10 @@
                                             <th>الاسم الكامل</th>
                                             <th>تاريخ الميلاد</th>
                                             <th>مكان الميلاد</th>
-                                            <th>الجنس</th>
                                             <th>اسم الولي</th>
                                             <th>المستوى</th>
                                             <th>القسم</th>
+                                            <th>التخصص</th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="projectinput1">  اللقب  </label>
+                                <label for="projectinput1">  اللقب  <span class="text-danger"> (*) </span></label>
                                 <input type="text" value="{{ old('firstName') }}" required
                                         class="form-control"
                                         id="firstName"
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="projectinput1">  الاسم  </label>
+                                <label for="projectinput1">  الاسم  <span class="text-danger"> (*) </span></label>
                                 <input type="text" value="{{ old('lastName') }}" required
                                         id="lastName"
                                         class="form-control"
@@ -141,7 +141,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="projectinput1">  تاريخ الميلاد  </label>
+                                <label for="projectinput1">  تاريخ الميلاد  <span class="text-danger"> (*) </span></label>
                                 <input type="date" value="{{ old('dateOfBirth') }}" required
                                         class="form-control"
                                         id="dateOfBirth"
@@ -155,7 +155,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for=""> مكان الميلاد </label>
+                                <label for=""> مكان الميلاد <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -182,7 +182,7 @@
                         
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">اسم الولي </label>
+                                <label for="">اسم الولي <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -205,7 +205,7 @@
 
                         <div class="col-6">
                             <div class="form-group">
-                                <label for=""> المستوى الدراسي </label>
+                                <label for=""> المستوى الدراسي <span class="text-danger"> (*) </span></label>
                                 
                                 <select required
                                         class="form-control"
@@ -231,7 +231,7 @@
                         
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">القسم </label>
+                                <label for="">القسم <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -254,7 +254,7 @@
 
                         <div class="col-6">
                             <div class="form-group">
-                                <label for=""> التخصص</label>
+                                <label for=""> التخصص <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -279,7 +279,7 @@
                     
                     <div class="row">
                         <div class="col-11">
-                            <h4 class="mb-1">الجنس</h4>
+                            <h4 class="mb-1">الجنس <span class="text-danger"> (*) </span></h4>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input id="male" type="radio"  name="gender" class="custom-control-input" value="ذكر">
                                 <label class="custom-control-label" for="male">ذكر</label>

@@ -54,6 +54,7 @@
 <script src="{{ url('admin/js/core/app.js') }}" type="text/javascript"></script>
 
 <script defer src="{{ url('admin/js/all.js') }}"></script>
+<script src="{{ url('admin/js/chart.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('table').DataTable({
@@ -80,6 +81,6 @@
 
 </script>
 
-
+@stack('scripts')
 </body>
 </html>

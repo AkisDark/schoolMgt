@@ -26,9 +26,9 @@ class ParentRequest extends FormRequest
         return [
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'phone' => ['required', 'digits:10'],
-            'identityCard' => ['required', 'numeric'],
+            'email' => ['sometimes', 'email'],
+            'phone' => ['sometimes', 'digits:10'],
+            'identityCard' => ['sometimes', 'numeric'],
         ];
     }
 }

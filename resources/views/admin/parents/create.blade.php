@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- اضافة أستاذ(ة) جديد | تسيير مدارس
+اضافة ولي جديد   | تسيير مدارس
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-form"> اضافة أستاذ(ة) جديد  </h4>
+                            <h4 class="card-title" id="basic-layout-form">  اضافة ولي   </h4>
                             <a class="heading-elements-toggle"><i
                                     class="la la-ellipsis-v font-medium-3"></i></a>
                            
@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  اللقب  </label>
+                                                <label for="">اللقب <span class="text-danger"> (*) </span> </label>
                                                 <input type="text" value="{{ old('firstName') }}" required
                                                        class="form-control"
                                                        name="firstName">
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput10">  الاسم  </label>
+                                                <label for="">  الاسم  <span class="text-danger"> (*) </span> </label>
                                                 <input type="text" value="{{ old('lastName') }}" required
                                                        class="form-control"
                                                        name="lastName">
@@ -62,9 +62,9 @@
                                         
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2">البريد الالكترني</label>
+                                                <label for="">البريد الالكترني </label>
                                                
-                                                <input type="email" value="{{ old('email') }}" required
+                                                <input type="email" value="{{ old('email') }}"
                                                        class="form-control"
                                                        name="email">
                 
@@ -76,9 +76,9 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput5">رقم الهاتف</label>
+                                                <label for="">رقم الهاتف</label>
                                                
-                                                <input type="number" value="{{ old('phone') }}" required
+                                                <input type="number" value="{{ old('phone') }}"
                                                        class="form-control"
                                                        name="phone">
                 
@@ -91,12 +91,12 @@
 
                                     <div class="row">
                                         
-                                        <div class="col-10 my-1">
+                                        <div class="col-12 my-1">
                                             <div class="form-group">
-                                                <label for="projectinput2">رقم بطاقة التعريف الوطني</label>
+                                                <label for="">رقم بطاقة التعريف الوطني</label>
                                                
-                                                <input type="number" value="{{ old('identityCard') }}" required
-                                                       class="form-control"
+                                                <input type="number"
+                                                       class="form-control text-center"
                                                        name="identityCard">
                 
                                                 @error('identityCard')

@@ -51,11 +51,18 @@
                                                     <td>
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
-                                                            <a href=""
-                                                                class="btn btn-outline-success  box-shadow-3 mr-1 mb-1">اشعار الغياب (1)</a> 
-                                                            <a href=""
-                                                                class="btn btn-outline-warning  box-shadow-3 mr-1 mb-1">اشعار الغياب (2)</a> 
-                                                            <a onclick="getDataUpdate('{{$absence->id}}', '{{$absence->student->id}}', 
+                                                           
+                                                                <a data-toggle="modal" data-target="#popupDate" 
+                                                                    class="btn btn-outline-success  box-shadow-3 mr-1 mb-1" 
+                                                                    onclick="defineNotification('اشعار الغياب (1)', '{{$absence->student->id}}', '{{$absence->date_start}}', '1')">اشعار الغياب (1)</a> 
+                                                         
+                                                         
+                                                                <a data-toggle="modal" data-target="#popupDate" 
+                                                                    class="btn btn-outline-success  box-shadow-3 mr-1 mb-1"  
+                                                                    onclick="defineNotification('اشعار الغياب (2)', '{{$absence->student->id}}', '{{$absence->date_start}}', '2')">اشعار الغياب (2)</a> 
+                                                            
+                                                          
+                                                          <a onclick="getDataUpdate('{{$absence->id}}', '{{$absence->student->id}}', 
                                                                                         '{{$absence->student->first_name}}', '{{ $absence->student->last_name}}',
                                                                                         '{{ $absence->reason_of_absences}}', '{{ $absence->date_start}}', '{{ $absence->date_end}}')" 
                                                                 data-toggle="modal" data-target="#updateData"
@@ -103,7 +110,7 @@
                   <div class="row">
                       <div class="col-6">
                           <div class="form-group">
-                              <label for="">  الاسم الكامل  </label>
+                              <label for="">  الاسم الكامل  <span class="text-danger"> (*) </span></label>
                               <select required
                                       id="fullName"
                                       class="form-control"
@@ -114,19 +121,17 @@
                                           {{ $student->first_name }} {{ $student->last_name }}
                                       </option> 
                                       @endforeach
-
-
                               </select>
-                          @error('studentId')
-                              <small class="text-danger">{{ $message }}</small>
-                          @enderror
+                            @error('studentId')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
 
                           </div>
                           
                       </div>
                       <div class="col-6">
                           <div class="form-group">
-                              <label for="projectinput2"> السبب  </label>
+                              <label for="projectinput2"> السبب  <span class="text-danger"> (*) </span></label>
                              
                               <select required
                                       class="form-control"
@@ -175,7 +180,7 @@
                   <div class="row">
                       <div class="col-6">
                           <div class="form-group">
-                              <label for="">  مـــــــــن  </label>
+                              <label for="">  مـــــــــن  <span class="text-danger"> (*) </span></label>
                               <input type="date" value="{{ old('firstName') }}"
                                       required 
                                      class="form-control"
@@ -190,7 +195,7 @@
                       </div>
                       <div class="col-6">
                           <div class="form-group">
-                              <label for="">  الـــــــــى  </label>
+                              <label for="">  الـــــــــى  <span class="text-danger"> (*) </span></label>
                               <input type="date" value="{{ old('firstName') }}" required
                                      class="form-control"
                                      id="dateEnd"
@@ -239,6 +244,34 @@
         </div>
     </div>
 
+    <!-- Modal (date (start-end)) -->
+    <div class="modal fade" id="popupDate" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="titleDateAbs"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form id="formDate" action="{{ url('dashboard/certificates/absence-notice') }}" method="post" target="_blank">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" id="dateId" name="id">
+                        <input type="hidden" id="typeDate" name="typeDate">
+                        <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">بداية الغياب :</label>
+                        <input type="date" value="" class="form-control" id="dateStartSel" name="dateStartSel" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ft-x"></i> اغلاق</button>
+                    <button type="submit" class="btn btn-primary">استخراج</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
 
     <script>
         function getDataUpdate(id, studentId, firstName, lastName,  reasonOfAbsences, dateStart, dateEnd){
@@ -252,5 +285,12 @@
         function getIdForDel(id){
             $('#idDel').val(id);
         }
+
+        function defineNotification(type, id, dateStartSel, sel){
+            $('#titleDateAbs').text(type);
+            $('#dateId').val(id);
+            $('#dateStartSel').val(dateStartSel)
+            $('#typeDate').val(sel)
+        } 
     </script>
 @endsection

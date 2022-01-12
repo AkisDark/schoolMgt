@@ -19,15 +19,15 @@ class LevelTableSeeder extends Seeder
         $levels = [];
 
         $levels[] = [
-            'name' => 'السنة الأولى'
+            'name' => '1'
         ];
 
         $levels[] = [
-            'name' => 'السنة الثانية'
+            'name' => '2'
         ];
 
         $levels[] = [
-            'name' => 'السنة الثالثة'
+            'name' => '3'
         ];
 
         DB::table('levels')->insert($levels);

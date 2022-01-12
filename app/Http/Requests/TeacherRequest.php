@@ -29,7 +29,7 @@ class TeacherRequest extends FormRequest
             'dateOfBirth' => ['required'],
             'gender' => ['required', 'string'],
             'wilayaId' => ['required', 'numeric', 'exists:wilayas,id'],
-            'materialId' => ['required', 'numeric', 'exists:parents,id'],
+            'materialId' => ['required', 'numeric', 'exists:materials,id'],
         ];
     }
 }

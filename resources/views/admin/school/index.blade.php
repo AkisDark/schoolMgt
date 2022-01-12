@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1"> اسم المؤسسة  </label>
+                                                <label for=""> اسم المؤسسة  <span class="text-danger"> (*) </span> </label>
                                                 <input type="text" value="{{ $school->name }}" required
                                                        class="form-control"
                                                        name="schoolName">
@@ -47,14 +47,14 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> الايمايل   </label>
+                                                <label for=""> الايمايل </label>
                                                 <input type="email" value="{{ $school->email }}" required
                                                        class="form-control"
                                                        name="email">
                 
-                                                       @error('email')
-                                                           <small class="text-danger">{{ $message }}</small>
-                                                       @enderror
+                                                @error('email')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div> 
@@ -62,7 +62,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> الولاية </label>
+                                                <label for=""> الولاية <span class="text-danger"> (*) </span> </label>
                                                
                                                 <select 
                                                         id="wilaya"
@@ -88,7 +88,7 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput3"> الدائرة   </label>
+                                                <label for=""> الدائرة  <span class="text-danger"> (*) </span> </label>
                                                 <select required
                                                         id="dairas"
                                                         class="form-control"
@@ -109,7 +109,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> الهاتف الثابت </label>
+                                                <label for=""> الهاتف الثابت </label>
                                                 <input type="text" value="{{ $school->fixed_phone  }}" required
                                                        class="form-control"
                                                        name="fixedPhone">
@@ -122,14 +122,14 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput3"> الفاكس   </label>
+                                                <label for=""> الفاكس   </label>
                                                 <input type="text" value="{{ $school->fax  }}" required
                                                        class="form-control"
                                                        name="fax">
                 
-                                                       @error('fax')
-                                                           <small class="text-danger">{{ $message }}</small>
-                                                       @enderror
+                                                @error('fax')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div> 

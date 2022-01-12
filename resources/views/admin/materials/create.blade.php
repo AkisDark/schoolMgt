@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-11">
                                             <div class="form-group">
-                                                <label for="projectinput1"> اسم المادة  </label>
+                                                <label for="projectinput1"> اسم المادة  <span class="text-danger"> (*) </span></label>
                                                 <input type="text" value="{{ old('nameMt') }}" required
                                                        class="form-control"
                                                        name="nameMt">

@@ -162,6 +162,19 @@
                 </ul>
             </li>
         </ul>
+
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="nav-item"><a href=""><i class="fas fa-chart-pie color-i"></i>
+                <span class="menu-title mx-1">الاحصائيات</span>
+            
+                </a>
+                <ul class="menu-content">
+                    <li><a class="menu-item" href="{{ url('dashboard/statistics') }}"> عرض الكل </a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>
 <!--End Sidebare-->

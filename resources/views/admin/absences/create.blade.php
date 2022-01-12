@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  الاسم الكامل  </label>
+                                                <label for="projectinput1">  الاسم الكامل  <span class="text-danger"> (*) </span></label>
                                                 <select required
                                                         class="form-control"
                                                         name="student">
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> السبب  </label>
+                                                <label for="projectinput2"> السبب  <span class="text-danger"> (*) </span></label>
                                                
                                                 <select required
                                                         class="form-control"
@@ -99,7 +99,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  مـــــــــن  </label>
+                                                <label for="projectinput1">  مـــــــــن  <span class="text-danger"> (*) </span></label>
                                                 <input type="date" value="{{ old('firstName') }}"
                                                         required 
                                                        class="form-control"
@@ -113,7 +113,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  الـــــــــى  </label>
+                                                <label for="projectinput1">  الـــــــــى  <span class="text-danger"> (*) </span></label>
                                                 <input type="date" value="{{ old('firstName') }}" required
                                                        class="form-control"
                                                        name="dateEnd">

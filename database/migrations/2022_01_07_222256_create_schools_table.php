@@ -16,7 +16,7 @@ class CreateSchoolsTable extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email', 200);
+            $table->string('email', 200)->nullable();
             $table->unsignedInteger('wilaya_id');
             $table->unsignedInteger('dairas_id');
             $table->string('fixed_phone')->nullable();

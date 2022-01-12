@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1"> اللقب   </label>
+                                                <label for="projectinput1"> اللقب <span class="text-danger"> (*) </span> </label>
                                                 <input type="text" value="{{ auth()->user()->first_name }}" 
                                                        class="form-control"
                                                        required
@@ -48,7 +48,7 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for=""> الاسم   </label>
+                                                <label for=""> الاسم  <span class="text-danger"> (*) </span> </label>
                                                 <input type="text" value="{{ auth()->user()->last_name }}" 
                                                        class="form-control"
                                                        required
@@ -64,7 +64,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for=""> الايمايل </label>
+                                                <label for=""> الايمايل <span class="text-danger"> (*) </span> </label>
                                                 <input type="email" value="{{ auth()->user()->email }}" required
                                                 class="form-control"
                                                 name="email">
@@ -77,7 +77,7 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput3"> اسم المستخدم   </label>
+                                                <label for="projectinput3"> اسم المستخدم <span class="text-danger"> (*) </span>  </label>
                                                 <input type="text" value="{{ auth()->user()->username }}" required
                                                 class="form-control"
                                                 name="username">
@@ -92,7 +92,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for=""> الهاتف  </label>
+                                                <label for=""> الهاتف <span class="text-danger"> (*) </span> </label>
                                                 <input type="number" value="{{ auth()->user()->phone }}" required
                                                        class="form-control"
                                                        name="phone">
@@ -105,7 +105,7 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput3"> كلمة المرور </label>
+                                                <label for="projectinput3"> كلمة المرور <span class="text-danger"> (*) </span> </label>
                                                 <input type="password" 
                                                        class="form-control"
                                                        placeholder="كلمة المرور"

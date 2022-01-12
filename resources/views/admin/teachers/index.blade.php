@@ -55,9 +55,9 @@
 
                                                                 <a onclick="getDataUpdate('{{$teacher->id}}', '{{$teacher->first_name}}', 
                                                                     '{{$teacher->last_name}}', '{{$teacher->date_of_birth}}', 
-                                                                     '{{$teacher->wilaya->id}}', '{{$teacher->wilaya->name}}', 
-                                                                     '{{ $teacher->joining_date}}', '{{$teacher->material->id}}', 
-                                                                     '{{$teacher->material->name}}', '{{$teacher->gender}}' )" 
+                                                                        '{{$teacher->wilaya->id}}', '{{$teacher->wilaya->name}}', 
+                                                                        '{{ $teacher->joining_date}}', '{{$teacher->material->id}}', 
+                                                                        '{{$teacher->material->name}}', '{{$teacher->gender}}' )" 
                                                                 data-toggle="modal" data-target="#updateData"
                                                                 class="btn btn-outline-primary box-shadow-3 mr-1 mb-1">تعديل</a>
 
@@ -82,8 +82,8 @@
         </div>
     </div>
 
-      <!-- Modal (update) -->
-      <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Modal (update) -->
+    <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -97,11 +97,11 @@
                                         @csrf
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id" value="">
-                                   
+                                    
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">  اللقب  </label>
+                                <label for="">  اللقب  <span class="text-danger"> (*) </span></label>
                                 <input type="text" value="{{ old('firstName') }}" required
                                         class="form-control"
                                         id="firstName"
@@ -115,7 +115,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">  الاسم  </label>
+                                <label for="">  الاسم  <span class="text-danger"> (*) </span></label>
                                 <input type="text" value="{{ old('lastName') }}" required
                                         id="lastName"
                                         class="form-control"
@@ -132,7 +132,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">  تاريخ الميلاد  </label>
+                                <label for="">  تاريخ الميلاد  <span class="text-danger"> (*) </span></label>
                                 <input type="date" value="{{ old('dateOfBirth') }}" required
                                         class="form-control"
                                         id="dateOfBirth"
@@ -146,7 +146,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for=""> مكان الميلاد </label>
+                                <label for=""> مكان الميلاد <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -171,7 +171,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for=""> المادة التي يدرسها</label>
+                                <label for=""> المادة التي يدرسها <span class="text-danger"> (*) </span></label>
                                 
                                 <select 
                                         class="form-control"
@@ -193,7 +193,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="">  تاريخ الالتحاق بالمؤسسة  </label>
+                                <label for="">  تاريخ الالتحاق بالمؤسسة <span class="text-danger"> (*) </span> </label>
                                 <input type="date" value="{{ old('joiningDate') }}" required
                                         class="form-control"
                                         id="joiningDate"
@@ -209,7 +209,7 @@
                     
                     <div class="row">
                         <div class="col-11">
-                            <h4 class="mb-1">الجنس</h4>
+                            <h4 class="mb-1">الجنس <span class="text-danger"> (*) </span></h4>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input id="male" type="radio"  name="gender" class="custom-control-input" value="ذكر">
                                 <label class="custom-control-label" for="male">ذكر</label>
@@ -266,13 +266,13 @@
             $('#lastName').val(lastName);
             $('#dateOfBirth').val(dateOfBirth);
             $('#joiningDate').val(joiningDate);
-             
+                
             if(gender === 'ذكر'){
                 $('#male').attr('checked', true);
             } else {
                 $('#female').attr('checked', true);
             }
-              
+                
             $('#wilayaId').append('<option selected value="'+ wilayaId +'">'+ wilayaName+'</option>');
             $('#materialId').append('<option selected value="'+ materialId +'">'+ materialName+'</option>');
             

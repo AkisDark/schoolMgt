@@ -23,28 +23,26 @@ class CertificateController extends Controller
 
     }
 
-    // Absence Notice Pdf (1)
-    public function getFirstAbsenceNoticePdf($id){
+    // Absence Notice Pdf
+    public function getAbsenceNoticePdf(Request $request){
+        $validated = $request->validate([
+            'id' => 'required|numeric',
+            'dateStartSel' => 'required|date',
+            'typeDate' => 'required|in:1,2'
+        ]);
 
-        if(!$this->getStudent($id))
-
+        if(!$validated ){
             return redirect()->back()->withInput()->with(['error'=> __('messages.msg_error')]);
+        }
 
-        $pdf = PDF::loadView('admin.certificate.second_absence_notice', $this->getStudent($id));
+        $id = $request->id;
 
-        return $pdf->download(time()  . '.pdf');
+        $dateStart = $request->dateStartSel;
 
-    }
+        $type = $request->typeDate;
 
-    // Absence Notice Pdf (2)
-    public function getSecondAbsenceNoticePdf($id){
-
-        if(!$this->getStudent($id))
-
-            return redirect()->back()->withInput()->with(['error'=> __('messages.msg_error')]);
-
-        $pdf = PDF::loadView('admin.certificate.second_absence_notice', $this->getStudent($id));
-
+        $pdf = PDF::loadView('admin.certificate.absence_notice', $this->getStudentAbs($id, $dateStart, $type));
+       
         return $pdf->download(time()  . '.pdf');
 
     }
@@ -156,17 +154,22 @@ class CertificateController extends Controller
     }
 
     // get Student by Id
-    private function getStudentAbs($id){
+    private function getStudentAbs($id, $dateStart, $type){
 
         $student = Student::where('id', $id);
 
         if($student->exists()){
 
-            $student = $student->with(['level', 'wilaya', 'absences'])->first();
+            $student = $student->with(['level', 'specialization', 'room', 'wilaya', 'absences'])->first();
 
             $school = School::with('wilaya')->find(1);
 
+            if($type === "1")
+                $notice = 'الاشعار الأول بالغياب';
+            else
+                $notice = 'الاشعار الثاني بالغياب';
             $data = [
+                'notice' => $notice , 
                 'first_name' => $student->first_name ?? '',
                 'last_name' => $student->last_name ?? '',
                 'date_of_birth' => $student->date_of_birth ?? '',
@@ -175,10 +178,11 @@ class CertificateController extends Controller
                 'location_school' => $school->wilaya->name ?? '',
                 //'img_qr_code' => $this->qrCode($student->identity_card) ?? '',
                 'img_qr_code' => '',
-                'level' => $student->level->name ?? '',
-                'reason_of_absences' => $student->absences->reason_of_absences ?? '',
-                'date_start' => $student->absences->date_start ?? '',
-                'date_end' => $student->absences->date_end ?? '',
+                'level' => $student->level->name . ' ' . 
+                           $student->specialization->name . ' ' . 
+                           $student->room->name ?? '',
+                //'reason_of_absences' => $student->absences->reason_of_absences ?? '',
+                'date_start' => $dateStart ?? '',
                 'data_now' => date('Y-m-d')
             ];
 

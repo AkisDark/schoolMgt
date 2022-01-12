@@ -29,7 +29,7 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <label for=""> المستوى  </label>
+                                                <label for=""> المستوى  <span class="text-danger"> (*) </span></label>
                                                 <select required
                                                         class="form-control"
                                                         name="level">
@@ -47,7 +47,7 @@
 
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <label for=""> التخصص  </label>
+                                                <label for=""> التخصص  <span class="text-danger"> (*) </span></label>
                                                
                                                 <select required
                                                         class="form-control"
@@ -66,7 +66,7 @@
 
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <label for="projectinput200"> القسم  </label>
+                                                <label for="projectinput200"> القسم  <span class="text-danger"> (*) </span></label>
                                                
                                                 <input type="number" value="{{ old('className') }}" required
                                                 class="form-control"

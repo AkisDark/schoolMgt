@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="projectinput1">  اللقب  </label>
+                                                    <label for="projectinput1">  اللقب  <span class="text-danger"> (*) </span></label>
                                                     <input type="text" value="{{ old('firstName') }}" 
                                                            class="form-control"
                                                            required
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  الاسم  </label>
+                                                <label for="projectinput1">  الاسم  <span class="text-danger"> (*) </span></label>
                                                 <input type="text" value="{{ old('lastName') }}" 
                                                        class="form-control"
                                                        required
@@ -63,7 +63,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  الايمايل  </label>
+                                                <label for="projectinput1">  الايمايل  <span class="text-danger"> (*) </span></label>
                                                 <input type="email" value="{{ old('email') }}" 
                                                        class="form-control"
                                                        required
@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">  اسم المستخدم  </label>
+                                                <label for="projectinput1">  اسم المستخدم  <span class="text-danger"> (*) </span></label>
                                                 <input type="text" value="{{ old('username') }}" 
                                                        class="form-control"
                                                        required
@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="projectinput1">  رقم الهاتف  </label>
+                                                <label for="projectinput1">  رقم الهاتف  <span class="text-danger"> (*) </span></label>
                                                 <input type="number" value="{{ old('phone') }}" 
                                                        class="form-control"
                                                        required
@@ -111,7 +111,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="">   كلمة المرور  </label>
+                                                <label for="">   كلمة المرور  <span class="text-danger"> (*) </span></label>
                                                 <input type="password" value="{{ old('password') }}" 
                                                        class="form-control"
                                                        required
@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="">   تأكيد كلمة المرور  </label>
+                                                <label for="">   تأكيد كلمة المرور  <span class="text-danger"> (*) </span></label>
                                                 <input type="password" value="{{ old('password_confirmation') }}" 
                                                         class="form-control"
                                                         required
