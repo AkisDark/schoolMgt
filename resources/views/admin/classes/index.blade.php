@@ -32,7 +32,6 @@
                                         class="table nowrap table-striped table-bordered scroll-horizontal scroll-vertical">
                                         <thead class="">
                                         <tr>
-                                            <th>رقم المعرف</th>
                                             <th>المستوى</th>
                                             <th>التخصص</th>
                                             <th>القسم</th>
@@ -44,7 +43,6 @@
                                         @isset($rooms)
                                             @foreach($rooms as $room)
                                                 <tr>
-                                                    <td>{{$room->id}}</td>
                                                     <td>{{$room->level->name}}</td>
                                                     <td>{{$room->specialization->name}}</td>
                                                     <td>{{$room->name}}</td>
@@ -82,8 +80,8 @@
     </div>
 
 
-      <!-- Modal (update) -->
-      <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Modal (update) -->
+    <div class="modal fade" id="updateData" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -141,9 +139,14 @@
                                 <div class="form-group">
                                     <label for=""> القسم  <span class="text-danger"> (*) </span></label>
                                     
-                                    <input type="number" value="{{ old('className') }}" required
-                                    class="form-control" id="className"
-                                    name="className" min="1" style="height:40px">
+                                    <select 
+                                        class="form-control"
+                                        id="className"
+                                        name="className">
+                                        @for ($i = 1; $i < 20; $i++)
+                                        <option value="{{ $i }}" >{{ $i }}</option>
+                                        @endfor
+                                    </select>
     
                                     @error('className')
                                         <small class="text-danger">{{ $message }}</small>
@@ -190,9 +193,34 @@
     <script>
         function getDataUpdate(id, levelId, specializationId, level, specialization, className){
             $('#id').val(id);
-            $('#level').append("<option value="+levelId+" selected >"+level+"</option>");
-            $('#specialization').append("<option value="+specializationId+" selected >"+specialization+"</option>");
             $('#className').val(className);
+
+            //********************Remove***************************
+
+            $( "#level > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#specialization > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+
+            //***********************Add*************************
+
+            $( "#level > option" ).each(function( index ) {
+                if($(this).val() == levelId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#specialization > option" ).each(function( index ) {
+                if($(this).val() == specializationId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
         }
 
         function getIdForDel(id){

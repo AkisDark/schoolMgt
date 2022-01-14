@@ -109,7 +109,7 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::get('/school-certificate/{studentId}', [CertificateController::class, 'getSchoolCertificatePdf']);
         Route::get('/work-certificate/{teacherId}', [CertificateController::class, 'getWorkCertificatePdf']);
         Route::post('/absence-notice', [CertificateController::class, 'getAbsenceNoticePdf']);
-        Route::get('/list-students/{classId}', [CertificateController::class, 'getListStudentsByRoom']);
+        Route::post('/list-students', [CertificateController::class, 'getListStudentsByRoom']);
 
     });
 

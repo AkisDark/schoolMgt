@@ -275,11 +275,35 @@
 
     <script>
         function getDataUpdate(id, studentId, firstName, lastName,  reasonOfAbsences, dateStart, dateEnd){
-            $('#id').val(id);
-            $('#fullName').append('<option selected value="'+ studentId +'">'+ firstName+" "+lastName +'</option>');
-            $('#reasonOfAbsences').append('<option selected value="'+ reasonOfAbsences +'">'+ reasonOfAbsences + '</option>');
+            $('#id').val(id);;
             $('#dateStart').val(dateStart);
             $('#dateEnd').val(dateEnd);
+
+
+            $( "#fullName > option" ).each(function( index ) {
+                $(this).removeAttr('selected');
+            });
+
+            $( "#reasonOfAbsences > option" ).each(function( index ) {
+                $(this).removeAttr('selected');
+            });
+            
+            //**********************Add*************************************
+            $( "#fullName > option" ).each(function( index ) {
+                if($(this).val() == studentId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#reasonOfAbsences > option" ).each(function( index ) {
+                if($(this).val() == reasonOfAbsences){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            
         }
 
         function getIdForDel(id){

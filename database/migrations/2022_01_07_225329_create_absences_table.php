@@ -14,9 +14,9 @@ class CreateAbsencesTable extends Migration
     public function up()
     {
         Schema::create('absences', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('student_id');
-            $table->string('reason_of_absences');
+            $table->increments('id');
+            $table->integer('student_id')->unsigned();
+            $table->string('reason_of_absences', 20);
             $table->date('date_start');
             $table->date('date_end');
             $table->timestamps();

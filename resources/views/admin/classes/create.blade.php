@@ -68,9 +68,15 @@
                                             <div class="form-group">
                                                 <label for="projectinput200"> القسم  <span class="text-danger"> (*) </span></label>
                                                
-                                                <input type="number" value="{{ old('className') }}" required
-                                                class="form-control"
-                                                name="className" min="1" style="height:40px">
+                                                <select 
+                                                    class="form-control"
+                                                    id="roomId"
+                                                    name="roomId">
+                                                    <option value="" selected disabled></option>
+                                                    @for ($i = 1; $i < 20; $i++)
+                                                    <option value="{{ $i }}" >{{ $i }}</option>
+                                                    @endfor
+                                                </select>
                 
                                                 @error('className')
                                                     <small class="text-danger">{{ $message }}</small>

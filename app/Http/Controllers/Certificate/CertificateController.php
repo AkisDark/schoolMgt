@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Certificate;
 
 use PDF;
+use App\Models\Room;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -25,6 +26,7 @@ class CertificateController extends Controller
 
     // Absence Notice Pdf
     public function getAbsenceNoticePdf(Request $request){
+
         $validated = $request->validate([
             'id' => 'required|numeric',
             'dateStartSel' => 'required|date',
@@ -79,27 +81,49 @@ class CertificateController extends Controller
     }
 
     // list students by room
-    public function getListStudentsByRoom($category_id){
+    public function getListStudentsByRoom(Request $request){
 
-        $students = Student::where('category_id', $category_id);
+        $validated = $request->validate([
+            'levelId' => 'required|numeric',
+            'specializationId' => 'required|numeric',
+            'roomId' => 'required|numeric'
+        ]);
 
-        if(!$students->exists()){
+        if($validated){
 
-            return redirect()->back()->withInput()->with(['error'=> __('messages.msg_error')]);
+            $levelId = $request->levelId;
 
+            $specializationId = $request->specializationId;
+
+            $roomId = $request->roomId;
+
+            $rooms = Room::with(['students' => function($q){
+                            $q->select('first_name', 'last_name', 'date_of_birth', 'gender', 'wilaya_id','room_id')
+                              ->with('wilaya')
+                              ->orderBy('first_name', 'DESC');
+                        }])
+                            ->with('level', 'specialization')
+                            ->where('name', $roomId) 
+                            ->where('level_id', $levelId)
+                            ->where('specialization_id', $specializationId)
+                            ->get();                   
+
+        
+            
+
+            $data = [
+
+                'students' => $rooms ?? '',
+
+            ];
+
+
+            $pdf = PDF::loadView('admin.certificate.list_students', $data );
+
+            return $pdf->download(time() . '.pdf');
         }
 
-        $students = $students->with('category')->orderBy('first_name', 'ASC')->get();
-
-        $data = [
-
-            'students' => $students ?? '',
-
-        ];
-
-        $pdf = PDF::loadView('admin.certificate.list_students', $data );
-
-        return $pdf->download(time() . '.pdf');
+        return redirect()->back()->withInput()->with(['error'=> __('messages.msg_error')]);
     }
 
 

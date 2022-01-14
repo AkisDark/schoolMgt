@@ -14,12 +14,12 @@ class CreateParentsTable extends Migration
     public function up()
     {
         Schema::create('parents', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('identity_card')->nullable();
+            $table->increments('id');
+            $table->string('first_name', 100);
+            $table->string('last_name', 100);
+            $table->string('email', 250)->nullable();
+            $table->string('phone', 15)->nullable();
+            $table->string('identity_card', 50)->nullable();
             $table->timestamps();
         });
     }

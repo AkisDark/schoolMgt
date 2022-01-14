@@ -159,12 +159,10 @@
                                                         id="roomId"
                                                         name="roomId">
                                                     <option value="" selected disabled></option>
-                                                    @foreach ($rooms as $room)
-                                                        <option value="{{ $room->id }}">
-                                                            {{ $room->name  }}
-                                                        </option> 
-                                                    @endforeach
-                
+                                                    @for ($i = 1; $i < 20; $i++)
+                                                    <option value="{{ $i }}" >{{ $i }}</option>
+                                                    @endfor
+                        
                                                 </select>
                 
                                                 @error('roomId')

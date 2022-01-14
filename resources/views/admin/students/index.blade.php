@@ -13,9 +13,18 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">جميع التلاميذ  </h4>
-                                <a class="heading-elements-toggle"><i
-                                        class="la la-ellipsis-v font-medium-3"></i></a>
+                               <div class="row">
+                                   <div class="col-lg-11">
+                                        <h4 class="card-title">جميع التلاميذ  </h4>
+                                   </div>
+                                   <div class="col-lg-1 text-right">
+                                        <a data-toggle="modal" data-target="#listStudent"
+                                             data-placement="top" title="طباعة قائمة التلاميذ">
+                                            <i class="fas fa-file-pdf fa-2x"></i>
+                                        </a>
+                                   </div>
+                               </div>
+                               
                                 
                             </div>
 
@@ -32,8 +41,8 @@
                                             <th>مكان الميلاد</th>
                                             <th>اسم الولي</th>
                                             <th>المستوى</th>
-                                            <th>القسم</th>
                                             <th>التخصص</th>
+                                            <th>القسم</th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -47,8 +56,8 @@
                                                     <td>{{$student->wilaya->name}}</td>
                                                     <td>{{$student->parent->first_name}} {{$student->parent->last_name}}</td>
                                                     <td>{{$student->level->name}}</td>
-                                                    <td>{{$student->room->name}}</td>
                                                     <td>{{$student->specialization->name}}</td>
+                                                    <td>{{$student->room->name}}</td>
                                                     <td>
 
                                                         <div class="btn-group" role="group"
@@ -180,7 +189,7 @@
 
                     <div class="row">
                         
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="">اسم الولي <span class="text-danger"> (*) </span></label>
                                 
@@ -203,7 +212,12 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                       
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for=""> المستوى الدراسي <span class="text-danger"> (*) </span></label>
                                 
@@ -225,34 +239,8 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">القسم <span class="text-danger"> (*) </span></label>
-                                
-                                <select 
-                                        class="form-control"
-                                        id="roomId"
-                                        name="roomId">
-                                    <option value="" selected disabled></option>
-                                    @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">
-                                            {{ $room->name  }}
-                                        </option> 
-                                    @endforeach
-
-                                </select>
-
-                                @error('roomId')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for=""> التخصص <span class="text-danger"> (*) </span></label>
                                 
@@ -274,6 +262,28 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="">القسم <span class="text-danger"> (*) </span></label>
+                                
+                                <select 
+                                        class="form-control"
+                                        id="roomId"
+                                        name="roomId">
+                                    <option value="" selected disabled></option>
+                                    @for ($i = 1; $i < 20; $i++)
+                                    <option value="{{ $i }}" >{{ $i }}</option>
+                                    @endfor
+        
+                                </select>
+
+                                @error('roomId')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        
                     </div>
 
                     
@@ -327,29 +337,180 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="listStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">اختيار القسم</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form action="{{ url('dashboard/certificates/list-students') }}" method="post" target="_blanck">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for=""> المستوى الدراسي <span class="text-danger"> (*) </span></label>
+                                
+                                <select required
+                                        class="form-control"
+                                        id="levelId"
+                                        name="levelId">
+                                    <option value="" selected disabled></option>
+                                    @foreach ($levels as $level)
+                                        <option value="{{ $level->id }}">
+                                            {{ $level->name  }}
+                                        </option> 
+                                    @endforeach
+        
+                                </select>
+        
+                                @error('levelId')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for=""> التخصص <span class="text-danger"> (*) </span></label>
+                                
+                                <select required
+                                        class="form-control"
+                                        id="specializationId"
+                                        name="specializationId">
+                                    <option value="" selected disabled></option>
+                                    @foreach ($specializations as $specialization)
+                                        <option value="{{ $specialization->id }}">
+                                            {{ $specialization->name  }}
+                                        </option> 
+                                    @endforeach
+        
+                                </select>
+        
+                                @error('specializationId')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="">القسم <span class="text-danger"> (*) </span></label>
+                                
+                                <select required
+                                        class="form-control"
+                                        id="roomId"
+                                        name="roomId">
+                                    <option value="" selected disabled></option>
+                                    @for ($i = 1; $i < 20; $i++)
+                                    <option value="{{ $i }}" >{{ $i }}</option>
+                                    @endfor
+        
+                                </select>
+        
+                                @error('roomId')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغــلاق</button>
+                <button type="submit" class="btn btn-primary">استخراج</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
     <script>
         function getDataUpdate(id, firstName, lastName, dateOfBirth, gender, wilayaId, 
                                 wilaya, parentId, parentFirstName, parentLastName, 
                                 parentIdentityCard, levelId, level, roomId, 
                                 room, specializationId, specialization ){
+
                                     
             $('#id').val(id);
             $('#firstName').val(firstName);
             $('#lastName').val(lastName);
             $('#dateOfBirth').val(dateOfBirth);
+
+            $('#male').removeAttr('checked');
+            $('#female').removeAttr('checked');
              
             if(gender === 'ذكر'){
                 $('#male').attr('checked', true);
             } else {
                 $('#female').attr('checked', true);
             }
-             
-                   
-            $('#wilayaId').append('<option selected value="'+ wilayaId +'">'+ wilaya+'</option>');
-            $('#parentId').append('<option selected value="'+ parentId +'">'+ parentFirstName+ " " +parentLastName +" ( "+ parentIdentityCard +" ) "+'</option>');
-            $('#levelId').append('<option selected value="'+ levelId +'">'+ level+'</option>');
-            $('#roomId').append('<option selected value="'+ roomId +'">'+ room+'</option>');
-            $('#specializationId').append('<option selected value="'+ specializationId +'">'+ specialization+'</option>');
+            
+            //**********************Remove Attr************************************
+            $( "#parentId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#wilayaId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#levelId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#specializationId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#roomId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            //*********************add Attr*************************************
+
+            $( "#parentId > option" ).each(function( index ) {
+                if($(this).val() == parentId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#wilayaId > option" ).each(function( index ) {
+                if($(this).val() == wilayaId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+          
+
+            $( "#specializationId > option" ).each(function( index ) {
+                if($(this).val() == specializationId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#levelId > option" ).each(function( index ) {
+                if($(this).val() == levelId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#roomId > option" ).each(function( index ) {
+                if($(this).val() == roomId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
             
         }
 

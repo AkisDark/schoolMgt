@@ -14,9 +14,9 @@ class CreateDairasTable extends Migration
     public function up()
     {
         Schema::create('dairas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('wilaya_id');
-            $table->string('name');
+            $table->increments('id');
+            $table->integer('wilaya_id')->unsigned();
+            $table->string('name', 50);
         });
     }
 

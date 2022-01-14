@@ -27,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('admin/css/all.css') }}">
     <link rel="stylesheet" href="{{ url('admin/css/style.css') }}">
+    @stack('css')
     <style>
         body {
             font-family: 'Cairo', sans-serif;

@@ -3,6 +3,9 @@
 @section('title')
  اضافة أستاذ(ة) جديد | تسيير مدارس
 @endsection
+@push('css')
+    <link rel="stylesheet" href="{{ url('admin/selectBox/virtual-select.min.css') }}">
+@endpush
 
 @section('content')
 
@@ -60,10 +63,10 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="projectinput1">  تاريخ الميلاد  <span class="text-danger"> (*) </span></label>
-                                                <input type="date" value="{{ old('firstName') }}" required
+                                                <input type="date" value="{{ old('dateOfBirth') }}" required
                                                        class="form-control"
-                                                       name="firstName">
-                                            @error('firstName')
+                                                       name="dateOfBirth">
+                                            @error('dateOfBirth')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                 
@@ -72,11 +75,11 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="projectinput2"> مكان الميلاد <span class="text-danger"> (*) </span></label>
+                                                <label for=""> مكان الميلاد <span class="text-danger"> (*) </span></label>
                                                
-                                                <select 
+                                                <select style="height: 47px"
                                                         class="form-control"
-                                                        name="wilaya">
+                                                        name="wilayaId">
                                                     
                                                     @foreach ($wilayas as $wilaya)
                                                         <option value="{{ $wilaya->id }}">
@@ -86,7 +89,7 @@
 
                                                 </select>
                 
-                                                @error('wilaya')
+                                                @error('wilayaId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
@@ -97,11 +100,12 @@
                                  
                                     <div class="row">
                                         
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <div class="form-group">
-                                                <label for="projectinput2">تاريح الالتحاق بالمؤسسة <span class="text-danger"> (*) </span></label>
+                                                <label for="">تاريخ الالتحاق بالمؤسسة <span class="text-danger"> (*) </span></label>
                                                
-                                                <input type="date" value="{{ old('joiningDate') }}" required
+                                                <input type="date" value="{{ old('joiningDate') }}" 
+                                                        required
                                                        class="form-control"
                                                        name="joiningDate">
                 
@@ -111,13 +115,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <div class="form-group">
-                                                <label for="projectinput2"> اسم المادة التي يدرسها <span class="text-danger"> (*) </span></label>
+                                                <label for=""> اسم المادة التي يدرسها <span class="text-danger"> (*) </span></label>
                                                
                                                 <select required
+                                                        style="height:47px"
                                                         class="form-control"
-                                                        name="material">
+                                                        name="materialId">
                                                     
                                                     @foreach ($materials as $material)
                                                         <option value="{{ $material->id }}">
@@ -127,7 +132,32 @@
 
                                                 </select>
                 
-                                                @error('material')
+                                                @error('materialId')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for=""> الأقسام التي يدرسها <span class="text-danger"> (*) </span></label>
+                                               
+                                                <select required 
+                                                        placeholder=" " 
+                                                        id="select-box"
+                                                        multiple
+                                                        class="form-control"
+                                                        name="roomId">
+                                                    
+                                                    @foreach ($rooms as $room)
+                                                        <option value="{{ $room->id }}">
+                                                            {{ $room->level->name  }} {{ $room->specialization->name  }} {{ $room->name  }}
+                                                        </option> 
+                                                    @endforeach
+
+                                                </select>
+                
+                                                @error('roomId')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
@@ -146,7 +176,6 @@
                                                 <label class="custom-control-label" for="customRadioInline2">أنثى</label>
                                               </div>
                                         </div>
-
                                     </div>
 
                                     <div class="form-actions">
@@ -170,3 +199,24 @@
 
 
 @endsection
+
+@push('scripts')
+    <script src="{{ url('admin/selectBox/virtual-select.min.js') }}"></script>
+    <script>
+
+       
+        VirtualSelect.init({ 
+            ele: '#select-box' ,
+            optionsSelectedText: 'عناصر محددة',
+            optionSelectedText: 'عنصر محدد',
+            searchPlaceholderText: 'البحث ...',
+            selectAllText: 'تحديد الكــل',
+            noOptionsText: 'لا توجد نتيجة',
+            noSearchResultsText: 'لا توجد نتيجة',
+            noOptionsText: 'لا توجد نتيجة',
+            allOptionsSelectedText: 'الكل',
+            textDirection: 'rtl',
+            optionHeight: '50px',
+        });
+    </script>
+@endpush

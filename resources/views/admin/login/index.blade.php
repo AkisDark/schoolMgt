@@ -66,24 +66,25 @@
                                     <span>الدخول للوحة التحكم </span>
                                 </h6>
                             </div>
-
-                    
-
                             <div class="card-content">
+                                @include('includes.alerts.success')
+                                @include('includes.alerts.errors')
                                 <div class="card-body">
                                     <form class="form-horizontal form-simple" action="{{ route('users.login') }}" method="post"
                                           novalidate>
                                           @csrf
                                         <fieldset class="form-group position-relative has-icon-left mb-0">
-                                            <input type="email" name="email"
+                                            <input type="email" 
+                                                    name="email"
                                                     required
                                                    class="form-control form-control-lg input-lg"
-                                                   value="" id="email" placeholder="أدخل البريد الالكتروني ">
+                                                   value="{{ old('email') }}" id="email" placeholder="أدخل البريد الالكتروني ">
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>
-
-                                            <span class="text-danger"> </span>
+                                            @error('email')
+                                                <small class="text-danger"> {{ $message }} </small>
+                                            @enderror 
 
                                         </fieldset>
                                         <br/>
@@ -93,6 +94,9 @@
                                                    id="user-password"
                                                    required
                                                    placeholder="أدخل كلمة المرور">
+                                            @error('password')
+                                                <small class="text-danger "> {{ $message }} </small>
+                                            @enderror       
                                             <div class="form-control-position">
                                                 <i class="la la-key"></i>
                                             </div>
@@ -113,25 +117,13 @@
         </div>
     </div>
 </div>
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-<!-- BEGIN VENDOR JS-->
+
 <script src="admin/vendors/js/vendors.min.js" type="text/javascript"></script>
-<!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
 <script src="admin/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-<script src="admin/vendors/js/forms/validation/jqBootstrapValidation.js"
-        type="text/javascript"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN MODERN JS-->
+
 <script src="admin/js/core/app-menu.js" type="text/javascript"></script>
 <script src="admin/js/core/app.js" type="text/javascript"></script>
-<!-- END MODERN JS-->
-<!-- BEGIN PAGE LEVEL JS-->
 <script src="admin/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL JS-->
 
-<script>
-
-</script>
 </body>
 </html>

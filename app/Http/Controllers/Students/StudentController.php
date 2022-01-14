@@ -15,26 +15,24 @@ use App\Http\Requests\StudentRequest;
 class StudentController extends Controller
 {
     //
-
+  
     public function index(){
-        $wilayas = Wilaya::get(); 
-        $levels = Level::get();
+        $wilayas = Wilaya::select('id', 'name')->get(); 
+        $levels = Level::select('id', 'name')->get();
         $parents = _Parent::get();
-        $rooms = Room::get();
-        $specializations = Specialization::get();
+        $specializations = Specialization::select('id', 'name')->get();
         $students = Student::with(['wilaya', 'level', 'room', 'specialization'])->get();
         return view('admin.students.index', compact('students', 'wilayas', 'levels', 'parents',
-                                                     'rooms', 'specializations'));
+                                                     'specializations'));
     }
 
     public function create(){
         $wilayas = Wilaya::get(); 
         $levels = Level::get();
         $parents = _Parent::get();
-        $rooms = Room::get();
         $specializations = Specialization::get();
         return view('admin.students.create', 
-                    compact('wilayas', 'levels', 'parents', 'rooms', 'specializations'));
+                    compact('wilayas', 'levels', 'parents', 'specializations'));
     }
 
     public function store(StudentRequest $request){

@@ -46,6 +46,7 @@
                                                     <td>{{$teacher->wilaya->name}}</td>
                                                     <td>{{$teacher->material->name}}</td>
                                                     <td>{{$teacher->joining_date}}</td>
+                                                   
                                                     <td>
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
@@ -266,16 +267,41 @@
             $('#lastName').val(lastName);
             $('#dateOfBirth').val(dateOfBirth);
             $('#joiningDate').val(joiningDate);
+
+            $('#male').removeAttr('checked');
+            $('#female').removeAttr('checked');
                 
             if(gender === 'ذكر'){
                 $('#male').attr('checked', true);
             } else {
                 $('#female').attr('checked', true);
             }
-                
-            $('#wilayaId').append('<option selected value="'+ wilayaId +'">'+ wilayaName+'</option>');
-            $('#materialId').append('<option selected value="'+ materialId +'">'+ materialName+'</option>');
+
+            //*******************Remove******************************
+
+            $( "#wilayaId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            $( "#materialId > option" ).each(function( index ) {
+                $( this ).removeAttr('selected');
+            });
+
+            //*******************add******************************
             
+            $( "#wilayaId > option" ).each(function( index ) {
+                if($(this).val() == wilayaId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
+
+            $( "#materialId > option" ).each(function( index ) {
+                if($(this).val() == materialId){
+                    $(this).attr('selected', true);
+                    return;
+                }
+            });
         }
 
         function getIdForDel(id){

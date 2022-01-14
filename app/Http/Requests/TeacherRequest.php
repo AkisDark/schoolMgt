@@ -26,10 +26,12 @@ class TeacherRequest extends FormRequest
         return [
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
-            'dateOfBirth' => ['required'],
+            'dateOfBirth' => ['required', 'date'],
+            'joiningDate' => ['required', 'date'],
             'gender' => ['required', 'string'],
             'wilayaId' => ['required', 'numeric', 'exists:wilayas,id'],
             'materialId' => ['required', 'numeric', 'exists:materials,id'],
+            'roomId' => ['required']
         ];
     }
 }

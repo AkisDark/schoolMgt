@@ -14,8 +14,8 @@ class CreateWilayasTable extends Migration
     public function up()
     {
         Schema::create('wilayas', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
+            $table->increments('id');
+            $table->string('name', 50)->unique();
         });
     }
 

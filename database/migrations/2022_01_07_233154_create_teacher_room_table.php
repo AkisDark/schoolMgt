@@ -15,9 +15,8 @@ class CreateTeacherRoomTable extends Migration
     {
         Schema::create('teacher_room', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('teacher_id');
-            $table->unsignedInteger('room_id');
-            $table->timestamps();
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('room_id')->unsigned();
         });
     }
 

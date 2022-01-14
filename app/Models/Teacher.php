@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Room;
 use App\Models\Wilaya;
 use App\Models\Material;
+use App\Models\TeacherRoom;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,4 +27,5 @@ class Teacher extends Model
     public function wilaya(){
         return $this->belongsTo(Wilaya::class);
     }
+
 }

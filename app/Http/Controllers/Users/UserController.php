@@ -35,14 +35,14 @@ class UserController extends Controller
 
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'min:5', 'max:200'],
         ]);
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard/school');
         }
-
-        return redirect()->back();
+        
+        return redirect()->back()->with(['error'=> 'خطأ في اخال البيانات']);
 
     }
 

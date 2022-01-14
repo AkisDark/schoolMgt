@@ -13,7 +13,7 @@
         <br/>
         <b>القسم</b>
         <br/>
-        <b>{{$students[0]->category->name}}</b>
+        <b>{{$students[0]->level->name ?? ''}} {{$students[0]->specialization->name ?? ''}} {{$students[0]->name ?? ''}} </b>
     </p>
     <table>
         <thead>
@@ -23,19 +23,19 @@
                 <th>الاسم</th>
                 <th>تاريخ الميلاد</th>
                 <th>مكان الميلاد</th>
-                <th>رقم التعريف</th>
+                <th>الجنس</th>
             </tr>
         </thead>
         <tbody>
             @php $i = 1; @endphp
-            @forelse ( $students as $student )
+            @forelse ( $students[0]->students as $student )
                 <tr>
                     <td>{{$i++}}</td>
                     <td>{{$student->first_name}}</td>
                     <td>{{$student->last_name}}</td>
                     <td>{{$student->date_of_birth}}</td>
-                    <td>{{$student->location}}</td>
-                    <td>{{$student->identity_card}}</td>
+                    <td>{{$student->wilaya->name}}</td>
+                    <td>{{$student->gender}}</td>
                 </tr>
             @empty
                 <tr >
