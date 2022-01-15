@@ -11,6 +11,12 @@ use App\Http\Controllers\Controller;
 
 class CertificateController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     // School Certificate Pdf
     public function getSchoolCertificatePdf($id){
 

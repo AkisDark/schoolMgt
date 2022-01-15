@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Teachers;
 
 use App\Models\Room;
+use App\Models\Level;
 use App\Models\Wilaya;
 use App\Models\Teacher;
 use App\Models\Material;
 use App\Models\TeacherRoom;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeacherRequest;
@@ -15,19 +17,27 @@ use App\Http\Requests\TeacherRequest;
 class TeacherController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function index(){
+
+         $techRoom = new Teacher();
+
+         $level = new Level();
+
+         $specialization = new Specialization();
+
+         $techRoom = new Teacher();
     
         $teachers = Teacher::with(['wilaya', 'material'])->get(); 
-
-        $rooms = DB::table('teacher_room')
-                ->select('rooms.id', DB::raw("concat(levels.name ,' ', specializations.name ,' ' ,rooms.name) as name"))
-                ->join('rooms', 'rooms.id', '=', 'teacher_room.room_id')
-                ->join('levels', 'levels.id', '=', 'rooms.level_id')
-                ->join('specializations', 'specializations.id', '=', 'rooms.specialization_id');
       
         $wilayas = Wilaya::get(); 
         $materials = Material::get();
-        return view('admin.teachers.index', compact('teachers', 'wilayas', 'materials', 'rooms'));
+        return view('admin.teachers.index', compact('teachers', 'wilayas', 'materials', 'techRoom', 'level', 'specialization'));
     }
 
     public function create(){
@@ -52,7 +62,7 @@ class TeacherController extends Controller
 
             if(!empty($teacher->id)){
                 foreach(explode(',', $request->roomId) as $roomId){
-                    DB::table('teacher_room')->insert([
+                    DB::table('room_teacher')->insert([
                         'teacher_id' => $teacher->id,
                         'room_id' => $roomId
                     ]);

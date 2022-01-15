@@ -20,11 +20,29 @@ class TeacherRoomTableSeeder extends Seeder
         $pivot = [];
 
         $pivot[] = [
-            'teacher_id' => Teacher::all()->random()->id,
+            'teacher_id' => 1,
             'room_id' => Room::all()->random()->id,
 
         ];
 
-        DB::table('teacher_room')->insert($pivot);
+        $pivot[] = [
+            'teacher_id' => 2,
+            'room_id' => Room::all()->random()->id,
+
+        ];
+
+        $pivot[] = [
+            'teacher_id' => 3,
+            'room_id' => Room::all()->random()->id,
+
+        ];
+
+        $pivot[] = [
+            'teacher_id' => 4,
+            'room_id' => Room::all()->random()->id,
+
+        ];
+
+        DB::table('room_teacher')->insert($pivot);
     }
 }

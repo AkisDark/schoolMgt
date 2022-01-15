@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Foreignkey extends Migration
+class ForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -86,22 +86,25 @@ class Foreignkey extends Migration
         });
 
 
-        // teacher_room
-        Schema::table('teacher_room', function (Blueprint $table){
+        /*
+        // room_teacher
+                Schema::table('room_teacher', function (Blueprint $table){
 
-                $table->foreign('teacher_id')
-                        ->references('id')
-                        ->on('teachers')
-                        ->onUpdate('cascade')
-                        ->onDelete('cascade');
-    
-                $table->foreign('room_id')
-                        ->references('id')
-                        ->on('rooms')
-                        ->onUpdate('cascade')
-                        ->onDelete('cascade');
-                     
-        });
+                        $table->foreign('teacher_id')
+                                ->references('id')
+                                ->on('teachers')
+                                ->onUpdate('cascade')
+                                ->onDelete('cascade');
+            
+                        $table->foreign('room_id')
+                                ->references('id')
+                                ->on('rooms')
+                                ->onUpdate('cascade')
+                                ->onDelete('cascade');
+                            
+                });
+
+        */
 
         // absences
         Schema::table('absences', function (Blueprint $table){
@@ -132,11 +135,7 @@ class Foreignkey extends Migration
         });
 
 
-
-
-
     }
-
 
     /**
      * Reverse the migrations.

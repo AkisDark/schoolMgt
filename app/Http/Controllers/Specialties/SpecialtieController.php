@@ -11,6 +11,10 @@ use App\Http\Requests\SpecializationRequest;
 class SpecialtieController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(){
         $specialties = Specialization::get();

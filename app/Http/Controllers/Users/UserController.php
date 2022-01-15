@@ -9,10 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MemberRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     //
+    public function __construct()
+    {
+         $this->middleware('auth')->except(['login', 'index']);
+    }
+
 
     public function members(){
         $users = User::get();
@@ -38,10 +44,11 @@ class UserController extends Controller
             'password' => ['required', 'min:5', 'max:200'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard/school');
-        }
-        
+        $success = auth()->attempt(['email' => request('email'),'password' => request('password')]);
+
+        if ($success) 
+            return redirect('dashboard/school');
+
         return redirect()->back()->with(['error'=> 'خطأ في اخال البيانات']);
 
     }
@@ -76,8 +83,9 @@ class UserController extends Controller
     }
     
     public function logout() {
+        Session::flush();
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function destroy(Request $request){
@@ -89,4 +97,5 @@ class UserController extends Controller
         return redirect()->back()->withInput()->withErrors($request)->with(['error'=> __('messages.msg_error')]);
 
     }
+
 }

@@ -25,7 +25,7 @@ class MaterialRequest extends FormRequest
     {
         return [
             //
-            'nameMt' => 'required'
+            'nameMt' => ['required', 'materials:users']
         ];
     }
 }

@@ -34,6 +34,7 @@
                                             <th>مكان الميلاد</th>
                                             <th>المادة التي يدرسها</th>
                                             <th>تاريخ الالتحاق</th>
+                                            <th> الأقسام التي يدرسها</th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -46,7 +47,22 @@
                                                     <td>{{$teacher->wilaya->name}}</td>
                                                     <td>{{$teacher->material->name}}</td>
                                                     <td>{{$teacher->joining_date}}</td>
-                                                   
+                                                    <td>
+                                                        @php
+                                                            $rooms = $techRoom->find($teacher->id)->rooms()->get();
+                                                            
+                                                            foreach ($rooms as $room) {
+
+                                                                $levelName = $level->find($room->level_id)->first()->name;
+
+                                                                $specializationName = $specialization->find($room->specialization_id)->first()->name;
+
+                                                                echo '[ ' . $levelName .' '.$specializationName . ' '. $room->name  . ' ]<br/>';
+                                                                
+                                                            }
+                                                            
+                                                        @endphp 
+                                                    </td>
                                                     <td>
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">

@@ -13,13 +13,14 @@ use App\Http\Controllers\statistics\StatisticsController;
 use App\Http\Controllers\Specialties\SpecialtieController;
 use App\Http\Controllers\Certificate\CertificateController;
 
+// Login
+Route::get('/', [UserController::class, 'index'])->name('login')->middleware('guest');
 
-Route::get('/login', [UserController::class, 'index']);
 
+// Authenticted
 Route::group(['prefix' => 'dashboard'], function(){
 
     Route::group(['prefix' => 'school'], function(){
-    
         Route::get('/', [SchoolController::class, 'index']);
         Route::get('/dairas/{id}', [SchoolController::class, 'dairas']);
         Route::post('/update', [SchoolController::class, 'update'])->name('school.update');
@@ -27,7 +28,6 @@ Route::group(['prefix' => 'dashboard'], function(){
 
 
     Route::group(['prefix' => 'specialties'], function(){
-    
         Route::get('/', [SpecialtieController::class, 'index']);
         Route::get('/create', [SpecialtieController::class, 'create']);
         Route::post('/store', [SpecialtieController::class, 'store'])->name('specialties.add');
@@ -38,7 +38,6 @@ Route::group(['prefix' => 'dashboard'], function(){
 
 
     Route::group(['prefix' => 'materials'], function(){
-    
         Route::get('/', [MaterialController::class, 'index']);
         Route::get('/create', [MaterialController::class, 'create']);
         Route::post('/store', [MaterialController::class, 'store'])->name('materials.add');
@@ -46,8 +45,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::post('/delete', [MaterialController::class, 'destroy'])->name('materials.delete');
     });
 
+
     Route::group(['prefix' => 'students'], function(){
-    
         Route::get('/', [StudentController::class, 'index']);
         Route::get('/create', [StudentController::class, 'create']);
         Route::post('/store', [StudentController::class, 'store'])->name('students.add');
@@ -56,8 +55,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         
     });
 
+
     Route::group(['prefix' => 'teachers'], function(){
-    
         Route::get('/', [TeacherController::class, 'index']);
         Route::get('/create', [TeacherController::class, 'create']);
         Route::post('/store', [TeacherController::class, 'store'])->name('teachers.add');
@@ -65,8 +64,8 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::post('/delete', [TeacherController::class, 'destroy'])->name('teachers.delete');
     });
 
+
     Route::group(['prefix' => 'parents'], function(){
-    
         Route::get('/', [ParentController::class, 'index']);
         Route::get('/create', [ParentController::class, 'create']);
         Route::post('/store', [ParentController::class, 'store'])->name('parents.add');
@@ -74,14 +73,15 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::post('/delete', [ParentController::class, 'destroy'])->name('parents.delete');
     });
 
+
     Route::group(['prefix' => 'absences'], function(){
-    
         Route::get('/', [AbsenceController::class, 'index']);
         Route::get('/create', [AbsenceController::class, 'create']);
         Route::post('/store', [AbsenceController::class, 'store'])->name('absences.add');
         Route::post('/update', [AbsenceController::class, 'update'])->name('absences.update');
         Route::post('/delete', [AbsenceController::class, 'destroy'])->name('absences.delete');
     });
+
 
     Route::group(['prefix' => 'classes'], function(){
         Route::get('/', [ClassController::class, 'index']);
@@ -113,10 +113,10 @@ Route::group(['prefix' => 'dashboard'], function(){
 
     });
 
+
     Route::group(['prefix' => 'statistics'], function(){
         Route::get('/', [StatisticsController::class, 'index']);
         Route::get('/classes', [StatisticsController::class, 'classesStatistics']);
-
     });
 
 });

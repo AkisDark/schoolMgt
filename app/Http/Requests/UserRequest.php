@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'lastName' => ['required', 'string'],
             'username' => ['required'],
             'phone' => ['required', 'digits:10'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'confirmed', 'min:5', 'max:200'],
             'password_confirmation' => ['required', 'min:5', 'max:200'],
         ];

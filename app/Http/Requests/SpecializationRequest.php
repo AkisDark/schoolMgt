@@ -25,7 +25,7 @@ class SpecializationRequest extends FormRequest
     {
         return [
             //
-            'nameSp' => 'required'
+            'nameSp' => ['required', 'unique:specializations']
         ];
     }
 }

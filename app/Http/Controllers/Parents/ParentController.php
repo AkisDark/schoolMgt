@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 class ParentController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(){
         $parents = _Parent::get();

@@ -29,7 +29,7 @@ class MemberRequest extends FormRequest
             'lastName' => ['required', 'string'],
             'username' => ['required'],
             'phone' => ['required', 'digits:10'],
-            'email' => ['required', 'email']
+            'email' => ['required', 'email', 'unique:users']
         ];
     }
 }
