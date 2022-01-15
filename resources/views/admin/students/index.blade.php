@@ -18,10 +18,11 @@
                                         <h4 class="card-title">جميع التلاميذ  </h4>
                                    </div>
                                    <div class="col-lg-1 text-right">
-                                        <a data-toggle="modal" data-target="#listStudent"
-                                             data-placement="top" title="طباعة قائمة التلاميذ">
-                                            <i class="fas fa-file-pdf fa-2x"></i>
-                                        </a>
+                                        <div class="d-inline" data-toggle="tooltip" data-placement="top" title="قائمة التلاميذ">
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#listStudent">
+                                                <i class="fas fa-file-pdf "></i>
+                                            </button>
+                                        </div>
                                    </div>
                                </div>
                                
